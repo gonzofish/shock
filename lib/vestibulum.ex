@@ -1,18 +1,5 @@
 defmodule Vestibulum do
   @moduledoc """
-  Documentation for Vestibulum.
+  Vestibulum: A static site generator
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Vestibulum.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
