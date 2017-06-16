@@ -21,8 +21,8 @@ defmodule InitTests do
     """
   end
 
-  test "should generate source directory with index.md" do
-    assert File.dir? "./src"
+  test "should generate content directory" do
+    assert File.dir? "./content"
   end
 
   test "should generate a themes directory with the default theme in it" do

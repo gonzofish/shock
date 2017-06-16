@@ -1,7 +1,7 @@
 defmodule Vestibulum.Scaffold do
   def initialize do
     File.write "./site.yml", _site_yml()
-    do_generate_src()
+    do_generate_content()
     do_generate_themes()
   end
 
@@ -14,8 +14,8 @@ defmodule Vestibulum.Scaffold do
     """
   end
 
-  defp do_generate_src do
-    File.mkdir "./src"
+  defp do_generate_content do
+    File.mkdir "./content"
   end
 
   defp do_generate_themes do
