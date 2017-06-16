@@ -1,6 +1,6 @@
-defmodule VestibulumTest do
+defmodule ShockTest do
   use ExUnit.Case
-  doctest Vestibulum
+  doctest Shock
 
   test "the truth" do
     assert 1 + 1 == 2

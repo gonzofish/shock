@@ -3,7 +3,7 @@ defmodule InitTests do
 
   setup do
     File.cd(System.tmp_dir)
-    Vestibulum.Scaffold.initialize
+    Shock.Scaffold.initialize
 
     on_exit fn -> TestHelper.cleanup end
   end
@@ -14,7 +14,7 @@ defmodule InitTests do
     { :ok, contents } = File.read "./site.yml"
     assert contents ==
     """
-    description: A new site by me, generated with Vestibulum!
+    description: A new site by me, generated with Shock!
     language: en
     posts
       - path: "/posts/page:num"

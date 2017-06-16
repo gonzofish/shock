@@ -1,4 +1,4 @@
-defmodule Vestibulum.Scaffold do
+defmodule Shock.Scaffold do
   def initialize do
     File.write "./site.yml", _site_yml()
     do_generate_content()
@@ -7,7 +7,7 @@ defmodule Vestibulum.Scaffold do
 
   defp _site_yml do
     """
-    description: A new site by me, generated with Vestibulum!
+    description: A new site by me, generated with Shock!
     language: en
     posts
       - path: "/posts/page:num"
