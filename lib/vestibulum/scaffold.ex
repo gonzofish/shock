@@ -35,9 +35,9 @@ defmodule Vestibulum.Scaffold do
   end
 
   defp do_generate_default_theme_files do
-    File.write "./themese/default/assets/styles/main.scss", ""
-    File.write "./themese/default/layout/index.eex", ""
-    File.write "./themese/default/layout/page.eex", ""
-    File.write "./themese/default/layout/post.eex", ""
+    File.write "./themes/default/assets/styles/main.scss", ""
+    File.write "./themes/default/layout/index.eex", ""
+    File.write "./themes/default/layout/page.eex", ""
+    File.write "./themes/default/layout/post.eex", ""
   end
 end

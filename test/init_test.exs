@@ -10,9 +10,9 @@ defmodule InitTests do
 
   test "should create a site.yml file" do
     assert File.exists? "./site.yml"
-    
+
     { :ok, contents } = File.read "./site.yml"
-    assert contents === 
+    assert contents ===
     """
     description: A new site by me, generated with Vestibulum!
     title: My New Site
@@ -38,7 +38,7 @@ defmodule InitTests do
       ./themes/default/layout/post.eex
     )
 
-    Enum.each(template_dirs, fn(dir) -> File.dir? dir |> assert end)
-    Enum.each(template_files, fn(file) -> File.exists? file |> assert end)
+    Enum.each(template_dirs, fn(dir) -> File.dir?(dir) |> assert end)
+    Enum.each(template_files, fn(file) -> File.exists?(file) |> assert end)
   end
 end
