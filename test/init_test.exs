@@ -16,13 +16,21 @@ defmodule InitTests do
     """
     description: A new site by me, generated with Vestibulum!
     language: en
+    posts
+      - path: "/posts/page:num"
+      - per_page: 5
     title: My New Site
     url: http://new-site.com
     """
   end
 
   test "should generate content directory" do
-    assert File.dir? "./content"
+    content_dirs = ~w(
+      ./content/drafts
+      ./content/pages
+      ./content/posts
+    )
+    Enum.each(content_dirs, fn(dir) -> File.dir?(dir) |> assert end)
   end
 
   test "should generate a themes directory with the default theme in it" do
@@ -42,6 +50,30 @@ defmodule InitTests do
 
     Enum.each(template_dirs, fn(dir) -> File.dir?(dir) |> assert end)
     Enum.each(template_files, fn(file) -> File.exists?(file) |> assert end)
+  end
+
+  test "should create the default main.scss" do
+    { :ok, contents } = File.read "./themes/default/assets/styles/main.scss"
+    assert contents ==
+    """
+    body {
+      color: black;
+      font: 14px 'Open Sans', sans-serif;
+    }
+    div.container {
+      align-content: flex-start;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+
+      h1 {
+        font-size: 300%;
+      }
+    }
+    """
   end
 
   test "should create the default base.eex template" do
@@ -72,27 +104,22 @@ defmodule InitTests do
     """
   end
 
-  test "should create the default main.scss" do
-    { :ok, contents } = File.read "./themes/default/assets/styles/main.scss"
-    assert contents ==
-    """
-    body {
-      color: black;
-      font: 14px 'Open Sans', sans-serif;
-    }
-    div.container {
-      align-content: flex-start;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-
-      h1 {
-        font-size: 300%;
-      }
-    }
-    """
-  end
+  # test "should create the default index.eex template" do
+  #   { :ok contents } = File.read "./themes/default/layout/index.eex"
+  #   assert contents ==
+  #   """
+  #   <%= Enum.map @content, fn(post) ->
+  #   \"\"\"
+  #   <h2>
+  #       <a href="#{ site.url }/#{ post.url }" title="#{ post.title }">
+  #           #{ post.title }
+  #       </a>
+  #   </h2>
+  #   <%= if post.excerpt %>
+  #   <p>#{ post.excerpt }</p>
+  #   <% end %>
+  #   \"\"\"
+  #   %>
+  #   """
+  # end
 end

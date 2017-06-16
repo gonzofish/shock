@@ -9,29 +9,29 @@ defmodule Vestibulum.Scaffold do
     """
     description: A new site by me, generated with Vestibulum!
     language: en
+    posts
+      - path: "/posts/page:num"
+      - per_page: 5
     title: My New Site
     url: http://new-site.com
     """
   end
 
   defp do_generate_content do
-    File.mkdir "./content"
+    File.mkdir_p "./content/drafts"
+    File.mkdir "./content/pages"
+    File.mkdir "./content/posts"
   end
 
   defp do_generate_themes do
-    File.mkdir "./themes"
-    do_generate_default_theme()
-  end
-
-  defp do_generate_default_theme do
     do_generate_default_theme_dirs()
     do_generate_default_theme_files()
   end
 
   defp do_generate_default_theme_dirs do
-    File.mkdir "./themes/default/assets/images"
+    File.mkdir_p "./themes/default/assets/images"
     File.mkdir "./themes/default/assets/js"
-    File.mkdir_p "./themes/default/assets/styles"
+    File.mkdir "./themes/default/assets/styles"
     File.mkdir "./themes/default/layout"
   end
 
