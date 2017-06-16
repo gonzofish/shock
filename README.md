@@ -1,6 +1,11 @@
 # Shock
 
-**TODO: Add description**
+A static site generator built in Elixir.
+Built mostly to get my feet wetter with Elixir!
+
+Taking cues from
+[Jekyll](https://jekyllrb.com/),
+[Obelisk](https://github.com/BennyHallett/obelisk/), and others!
 
 ## Installation
 
