@@ -104,22 +104,22 @@ defmodule InitTests do
     """
   end
 
-  # test "should create the default index.eex template" do
-  #   { :ok contents } = File.read "./themes/default/layout/index.eex"
-  #   assert contents ==
-  #   """
-  #   <%= Enum.map @content, fn(post) ->
-  #   \"\"\"
-  #   <h2>
-  #       <a href="#{ site.url }/#{ post.url }" title="#{ post.title }">
-  #           #{ post.title }
-  #       </a>
-  #   </h2>
-  #   <%= if post.excerpt %>
-  #   <p>#{ post.excerpt }</p>
-  #   <% end %>
-  #   \"\"\"
-  #   %>
-  #   """
-  # end
+  test "should create the default index.eex template" do
+    { :ok, contents } = File.read "./themes/default/layout/index.eex"
+    assert contents ==
+    """
+    <%= Enum.map(@content, fn(post) ->
+    \"\"\"
+    <h2>
+        <a href="\#{ site.url }/\#{ post.url }" title="\#{ post.title }">
+            \#{ post.title }
+        </a>
+    </h2>
+    <%= if post.excerpt %>
+    <p>\#{ post.excerpt }</p>
+    <% end %>
+    \"\"\"
+    %>
+    """
+  end
 end

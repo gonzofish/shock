@@ -38,12 +38,34 @@ defmodule Shock.Scaffold do
   defp do_generate_default_theme_files do
     File.write "./themes/default/assets/styles/main.scss", _default_style()
     File.write "./themes/default/layout/base.eex", _default_base()
-    File.write "./themes/default/layout/index.eex", ""
+    File.write "./themes/default/layout/index.eex", _default_index()
     File.write "./themes/default/layout/page.eex", ""
     File.write "./themes/default/layout/post.eex", ""
   end
 
-  defp _default_base() do
+  defp _default_style do
+    """
+    body {
+      color: black;
+      font: 14px 'Open Sans', sans-serif;
+    }
+    div.container {
+      align-content: flex-start;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+
+      h1 {
+        font-size: 300%;
+      }
+    }
+    """
+  end
+
+  defp _default_base do
     """
     <!DOCTYPE html>
     <html lang="<%= @language %>">
@@ -69,25 +91,20 @@ defmodule Shock.Scaffold do
     """
   end
 
-  defp _default_style do
+  defp _default_index do
     """
-    body {
-      color: black;
-      font: 14px 'Open Sans', sans-serif;
-    }
-    div.container {
-      align-content: flex-start;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-
-      h1 {
-        font-size: 300%;
-      }
-    }
+    <%= Enum.map(@content, fn(post) ->
+    \"\"\"
+    <h2>
+        <a href="\#{ site.url }/\#{ post.url }" title="\#{ post.title }">
+            \#{ post.title }
+        </a>
+    </h2>
+    <%= if post.excerpt %>
+    <p>\#{ post.excerpt }</p>
+    <% end %>
+    \"\"\"
+    %>
     """
   end
 end
